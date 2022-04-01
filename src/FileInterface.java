@@ -7,5 +7,6 @@ public interface FileInterface extends Remote {
     public String inbox(int user) throws IOException;
     public String read(int user, String email) throws IOException;
     public String sendEmail(int user, String subject, String body) throws IOException;
+    public String OTP(String[] splited, String subject, String body, int recUser) throws IOException;
 
 }

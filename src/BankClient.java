@@ -1,5 +1,8 @@
 import java.io.*;
 import java.rmi.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class BankClient{
@@ -9,6 +12,7 @@ public class BankClient{
         Scanner in = new Scanner(System.in);
         int user, option, sendID;
         String email, subject, body;
+        long message0, message1;
         boolean checkUser;
 
         if(argv.length != 1) {
@@ -35,14 +39,22 @@ public class BankClient{
                             //sending email
                             System.out.print("\nEnter the ID of the user you want to email: ");
                             sendID = in.nextInt();
-                            System.out.print("\nWhat is the subject of the email: ");
+                            System.out.print("\nEnter the Subject (2 word minimum): ");
                             Scanner in2 = new Scanner(System.in);
                             subject = in2.nextLine();
-                            System.out.print("\nWhat is the body of the email: ");
+                            subject = subject.toLowerCase();
+                            System.out.print("\nEnter the Body of the Email: ");
                             Scanner in3 = new Scanner(System.in);
                             body = in3.nextLine();
+                            
+                            String[] splited = subject.split("\\s+");
 
-                            fi.sendEmail(sendID, subject, body);
+                            System.out.println(fi.OTP(splited, subject, body, sendID));
+
+
+                          //  System.out.println(fi.OTP(message0, message1));
+
+                           // fi.sendEmail(sendID, subject, body);
                             break;
                         case 2:
                             //checking email
@@ -58,6 +70,7 @@ public class BankClient{
                 }
                 else{
                     //show options
+                    System.out.println("User could not be authenticated.");
                 }
 
             }
