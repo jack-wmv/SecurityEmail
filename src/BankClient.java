@@ -34,38 +34,44 @@ public class BankClient{
                     System.out.print("\nEmail options: \n1. Send Email\n2. Check Inbox\nPlease enter the corresponding number to your option: ");
                     option = in.nextInt();
 
-                    switch(option){
-                        case 1:
-                            //sending email
-                            System.out.print("\nEnter the ID of the user you want to email: ");
-                            sendID = in.nextInt();
-                            System.out.print("\nEnter the Subject (2 word minimum): ");
-                            Scanner in2 = new Scanner(System.in);
-                            subject = in2.nextLine();
-                            subject = subject.toLowerCase();
-                            System.out.print("\nEnter the Body of the Email: ");
-                            Scanner in3 = new Scanner(System.in);
-                            body = in3.nextLine();
-                            
-                            String[] splited = subject.split("\\s+");
+                    if(option == 1 || option == 2){
+                        switch(option){
+                            case 1:
+                                //sending email
+                                System.out.print("\nEnter the ID of the user you want to email: ");
+                                sendID = in.nextInt();
+                                System.out.print("\nEnter the Subject (2 word minimum): ");
+                                Scanner in2 = new Scanner(System.in);
+                                subject = in2.nextLine();
+                                subject = subject.toLowerCase();
+                                System.out.print("\nEnter the Body of the Email: ");
+                                Scanner in3 = new Scanner(System.in);
+                                body = in3.nextLine();
+                                
+                                String[] splited = subject.split("\\s+");
+    
+                                System.out.println(fi.OTP(splited, subject, body, sendID));
+    
+    
+                              //  System.out.println(fi.OTP(message0, message1));
+    
+                               // fi.sendEmail(sendID, subject, body);
+                                break;
+                            case 2:
+                                //checking email
+                                System.out.print("\nCurrent Inbox: ");
+                                System.out.println(fi.inbox(user));
+    
+                                System.out.print("\nEnter the email you wish to read: ");
+                                Scanner in4 = new Scanner(System.in);
+                                email = in4.nextLine();
+                                System.out.println(fi.read(user, email));
+                                break;
+                        }
+                    }
 
-                            System.out.println(fi.OTP(splited, subject, body, sendID));
-
-
-                          //  System.out.println(fi.OTP(message0, message1));
-
-                           // fi.sendEmail(sendID, subject, body);
-                            break;
-                        case 2:
-                            //checking email
-                            System.out.print("\nCurrent Inbox: ");
-                            System.out.println(fi.inbox(user));
-
-                            System.out.print("\nEnter the email you wish to read: ");
-                            Scanner in4 = new Scanner(System.in);
-                            email = in4.nextLine();
-                            System.out.println(fi.read(user, email));
-                            break;
+                    else{
+                        System.out.println("Menu option not valid!");
                     }
                 }
                 else{
